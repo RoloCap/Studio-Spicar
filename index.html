@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitoDesign</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans">
+
+    <!-- NAV BAR -->
+    <header class="flex fixed w-full h-32 z-50 bg-black/70 backdrop-blur-md">
+        <div class="max-w-8xl w-[40rem] mx-auto flex justify-between items-center px-10 py-4">
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <img src="Logo white-01.png" alt="VitoDesign" class="w-32">
+            </a>
+            <!-- Linkovi -->
+            <nav class="space-x-8 text-white font-semibold">
+                <a href="#o-meni" class="hover:text-gray-300 transition-colors duration-200">O meni</a>
+                <a href="#projekti" class="hover:text-gray-300 transition-colors duration-200">Projekti</a>
+                <a href="#kontakt" class="hover:text-gray-300 transition-colors duration-200">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CRNI DIO -->
+    <section id="projekti" class="bg-black text-white min-h-screen px-10 py-16">
+        <!-- Logo -->
+        <div class="flex justify-center mb-[-100px] mt-[-100px]">
+            <img src="Logo white-01.png" alt="VitoDesign" class="w-[500px]">
+        </div>
+        <!-- Tekst ispod loga -->
+        <div class="text-center max-w-3xl mx-auto">
+            <h1 class="text-7xl font-bold mb-32 mt-[-300px]">Studio Špicar</h1>
+            <p class="text-gray-300 text-lg mb-12">
+                Fotografija, 3D animacija, 3D vizualizacija
+            </p>
+        </div>
+        <!-- Galerija unutar crnog dijela -->
+        <div class="flex flex-wrap justify-center gap-6">
+            <img src="Macka.jpg" alt="Projekt 1"
+                class="w-auto h-64 rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onclick="openImage(this)">
+
+            <img src="Lego.png" alt="Projekt 2"
+                class="w-auto h-64 rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onclick="openImage(this)">
+
+            <img src="StelaHodnik.png" alt="Projekt 3"
+                class="w-auto h-64 rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onclick="openImage(this)">
+        </div>
+    </section>
+
+    <!-- Overlay za fullscreen prikaz -->
+    <div id="imageModal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50"
+        onclick="closeImage()">
+        <img id="modalImage" src=""
+            class="max-w-[90%] max-h-[90%] rounded-2xl shadow-lg transition-transform duration-300 scale-100">
+    </div>
+
+    <script>
+        function openImage(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = img.src;
+            modal.classList.remove('hidden');
+        }
+
+        function closeImage() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+        }
+    </script>
+
+<!-- BIJELI DIO PODIJELJEN -->
+<section id="o-meni" class="bg-white text-black py-[300px] w-full">
+  <div class="w-[2000px] mx-auto flex flex-col md:flex-row md:gap-20 lg:gap-32">
+    
+    <!-- Lijeva strana: tekst centriran lijevo -->
+    <div class="md:w-1/2 flex flex-col justify-center text-left">
+      <h2 class="text-3xl font-semibold mb-6">O meni</h2>
+      <p class="text-lg text-gray-700">
+        Zovem se <strong>Vito Špicar</strong> i kreativni sam vizualni umjetnik specijaliziran za <strong>fotografiju, video produkciju, 3D animaciju i 3D vizualizaciju</strong>. Moja strast prema digitalnom stvaranju počela je još u mladosti, a tijekom godina sam razvijao svoje vještine kroz razne projekte, natjecanja i profesionalne angažmane.
+      </p>
+      <p class="text-lg text-gray-700 mt-4">
+        Svojim radom nastojim kombinirati tehničku preciznost i kreativni izražaj, stvarajući vizuale koji pričaju priču i prenose emocije. Bilo da je riječ o fotografiji, video produkciji, animaciji ili 3D modeliranju, svaki projekt doživljavam kao priliku za istraživanje novih ideja i inovativnih rješenja.
+      </p>
+      <p class="text-lg text-gray-700 mt-4">
+        U svom portfoliju posebno ističem projekte koji spajaju <strong>umjetnost i tehnologiju</strong>, gdje detalji, kompozicija i estetika igraju ključnu ulogu. Moj cilj je stalno rasti, učiti i inspirirati druge kroz vizualni sadržaj koji kreiram.
+      </p>
+    </div>
+    
+    <!-- Desna strana: tri fotografije jedna pored druge -->
+       <div class="md:w-1/2 grid grid-cols-3 gap-4">
+        <img src="Brod.jpg" alt="Foto 1" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Pas.jpg" alt="Foto 2" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Nintendo.png" alt="Foto 3" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Limun-Limeta Drip2.png" alt="Foto 4" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Jagoda-Lubenica Drip.png" alt="Foto 5" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Rolex1.png" alt="Foto 6" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="Rolex2.png" alt="Foto 7" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="ep1.jpg" alt="Foto 8" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+        <img src="ep2.jpg" alt="Foto 9" class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImage(this)">
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="relative w-full h-64 mt-16">
+  <!-- Pozadinska slika -->
+  <img src="Footer2-01.png" alt="Footer Background" class="absolute inset-0 w-full h-full object-cover">
+
+
+  <!-- Sadržaj footera smješten u desni dio -->
+  <div class="relative h-full flex items-center justify-end pr-10 mr-64">
+    <div class="text-white text-center max-w-md">
+      <!-- Logo ili ime studija -->
+      <h3 class="text-xl font-bold">Studio Špicar</h3>
+      <p class="text-gray-200 mt-1">Fotografija | Video produkcija | 3D animacija</p>
+
+      <!-- Linkovi -->
+      <div class="flex gap-4 mt-2 justify-center">
+        <a href="#o-meni" class="hover:text-gray-300 transition-colors">O meni</a>
+        <a href="#projekti" class="hover:text-gray-300 transition-colors">Projekti</a>
+        <a href="#kontakt" class="hover:text-gray-300 transition-colors">Kontakt</a>
+      </div>
+
+      <!-- Društvene mreže -->
+      <div class="flex gap-3 mt-2 justify-center">
+        <a href="https://www.instagram.com/_vitodesign_/"><img src="Instagram_logo_2022.svg.webp" alt="igLogo" class="w-auto h-12"></a>
+        <a href="https://www.youtube.com/@vitodesign12"><img src="YouTube_full-color_icon_(2017).svg.webp" alt="igLogo" class="w-auto h-12"></a>
+        <a href="https://x.com/spicarvito"><img src="x-twitter-logo-on-black-circle-5694247.png" alt="igLogo" class="w-auto h-12"></a>   
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-gray-400 text-sm mt-4">&copy; 2025 Studio Špicar. Sva prava pridržana.</p>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+
+</html>
