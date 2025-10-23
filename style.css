@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+/* Gornji (crni) dio */
+.hero {
+    background-color: black;
+    padding: 0px 10% 0px 10%;
+    height: 100vh;
+}
+
+/* Logo na vrhu */
+.logo {
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto 60px auto;
+}
+
+/* Tekst i slike na crnom dijelu */
+.hero-content {
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 40px;
+}
+
+/* Galerija na crnom dijelu */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Bijeli dio nakon skrola */
+.content {
+    background-color: white;
+    color: #222;
+    padding: 100px 10%;
+    text-align: center;
+}
