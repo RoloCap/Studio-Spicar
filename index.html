@@ -46,13 +46,13 @@
 
       <!-- Galerija -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-        <img src="Macka.jpg" alt="Projekt 1"
+        <img src="Macka_small.jpg" alt="Projekt 1"
           class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
           onclick="openImage(this)">
-        <img src="Lego.png" alt="Projekt 2"
+        <img src="Lego_small.jpg" alt="Projekt 2"
           class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
           onclick="openImage(this)">
-        <img src="StelaHodnik.png" alt="Projekt 3"
+        <img src="StelaHodnik_small.jpg" alt="Projekt 3"
           class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
           onclick="openImage(this)">
       </div>
@@ -70,7 +70,8 @@
     function openImage(img) {
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
-      modalImg.src = img.src;
+      const fullSrc = img.src.replace('-small', '');
+    modalImg.src = fullSrc;
       modal.classList.remove('hidden');
     }
     function closeImage() {
@@ -103,22 +104,22 @@
 
       <!-- Slike -->
       <div class="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <img src="Brod.jpg" alt="Foto 1"
+        <img src="Brod_small.jpg" alt="Foto 1"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Pas.jpg" alt="Foto 2"
+        <img src="Pas_small.jpg" alt="Foto 2"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Nintendo.png" alt="Foto 3"
+        <img src="Nintendo_small.jpg" alt="Foto 3"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Limun-Limeta Drip2.png" alt="Foto 4"
+        <img src="Limun-Limeta Drip2_small.jpg" alt="Foto 4"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Jagoda-Lubenica Drip.png" alt="Foto 5"
+        <img src="Jagoda-Lubenica Drip_small.jpg" alt="Foto 5"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Rolex1.png" alt="Foto 6"
+        <img src="Rolex1_small.jpg" alt="Foto 6"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
       </div>
