@@ -12,52 +12,152 @@
 
   <!-- NAV BAR -->
   <header class="flex fixed w-full h-32 z-50 bg-black/70 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-10 py-4 gap-24">
+    <div class="w-full mx-auto flex justify-between items-center px-6 md:px-10 py-4 gap-24 relative">
       <!-- Logo -->
       <div>
         <a href="#" class="flex items-center">
           <img src="Logo white-01.png" alt="VitoDesign" class="w-28 md:w-32">
         </a>
       </div>
+      <div class="flex justify-center absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
+        <h1>VitoDesign</h1>
+      </div>
       <div>
         <!-- Linkovi -->
         <nav class="hidden sm:flex space-x-6 md:space-x-10 text-white font-semibold text-sm md:text-base">
-          <a href="#o-meni" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">O meni</a>
-          <a href="#projekti" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Projekti</a>
-          <a href="#kontakt" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Kontakt</a>
+          <a href="#o-meni"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">O
+            meni</a>
+          <a href="projekti.html"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Projekti</a>
+          <a href="#kontakt"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Kontakt</a>
         </nav>
       </div>
     </div>
   </header>
 
   <!-- CRNI DIO -->
-  <section id="projekti" class="bg-black text-white pt-48 pb-24 px-4 md:px-10">
-    <div class="max-w-6xl mx-auto text-center">
-      <!-- Logo -->
-      <div class="flex justify-center mb-8">
-        <img src="Logo white-01.png" alt="VitoDesign" class="w-52 md:w-80">
+<section id="projekti">
+  <div class="bg-black text-white h-[100vh] flex flex-col items-center justify-center relative overflow-hidden">
+
+    <!-- Naslov i opis -->
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Studio Špicar</h1>
+    <p class="text-gray-300 text-base md:text-lg mb-10 text-center px-4">
+      Fotografija | 3D animacija | 3D vizualizacija | Video produkcija
+    </p>
+
+    <!-- Carousel -->
+    <div class="relative w-full max-w-6xl flex items-center justify-center">
+
+      <!-- Lijeva strelica -->
+      <button id="prevBtn"
+        class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full z-20">
+        &#10094;
+      </button>
+
+      <!-- Slike -->
+      <div id="carousel" class="flex items-center justify-center gap-6 transition-all duration-700 ease-in-out ">
+        <!-- Dinamički se puni iz JS-a -->
       </div>
 
-      <!-- Tekst -->
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">Studio Špicar</h1>
-      <p class="text-gray-300 text-base md:text-lg mb-12">
-        Fotografija | 3D animacija | 3D vizualizacija | Video produkcija
-      </p>
-
-      <!-- Galerija -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-        <img src="Macka_small.jpg" alt="Projekt 1"
-          class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
-          onclick="openImage(this)">
-        <img src="Lego_small.jpg" alt="Projekt 2"
-          class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
-          onclick="openImage(this)">
-        <img src="StelaHodnik_small.jpg" alt="Projekt 3"
-          class="w-full max-w-sm h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-pointer"
-          onclick="openImage(this)">
-      </div>
+      <!-- Desna strelica -->
+      <button id="nextBtn"
+        class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full z-20">
+        &#10095;
+      </button>
     </div>
-  </section>
+  </div>
+
+  <!-- Overlay za fullscreen prikaz -->
+  <div id="fullscreenOverlay"
+    class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 transition-opacity duration-500">
+    <img id="fullscreenImg" src="" alt="Fullscreen" class="max-w-[90%] max-h-[90%] rounded-lg shadow-lg">
+  </div>
+
+  <!-- Skripta -->
+  <script>
+    const images = [
+      "Macka_small.jpg",
+      "Lego_small.jpg",
+      "StelaHodnik_small.jpg",
+      "Render1_small.jpg",
+      "Render2_small.jpg"
+    ];
+
+    let current = 1;
+    const carousel = document.getElementById("carousel");
+    const overlay = document.getElementById("fullscreenOverlay");
+    const fullImg = document.getElementById("fullscreenImg");
+
+    // Funkcija za osvježavanje prikaza
+    function updateCarousel() {
+      carousel.innerHTML = "";
+
+      const prev = (current - 1 + images.length) % images.length;
+      const next = (current + 1) % images.length;
+
+      const createImg = (src, isCenter) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Projekt";
+        img.className = isCenter
+          ? "w-80 h-80 object-cover rounded-xl opacity-100 scale-110 transition-all duration-700 ease-in-out cursor-pointer hover:scale-105 transition-transform duration-300 "
+          : "w-64 h-64 object-cover rounded-xl opacity-75 transition-all duration-700 ease-in-out cursor-pointer hover:scale-105 transition-transform duration-300 ";
+
+        // Hover fullscreen
+        img.addEventListener("click", () => {
+          overlay.classList.remove("hidden");
+          overlay.classList.add("flex");
+          fullImg.src = src;
+          setTimeout(() => overlay.classList.add("opacity-100"), 50);
+        });
+
+        return img;
+      };
+
+      carousel.appendChild(createImg(images[prev], false));
+      carousel.appendChild(createImg(images[current], true));
+      carousel.appendChild(createImg(images[next], false));
+    }
+
+    // Strelice
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      current = (current - 1 + images.length) % images.length;
+      updateCarousel();
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      current = (current + 1) % images.length;
+      updateCarousel();
+    });
+
+    // Zatvori fullscreen klikom
+    overlay.addEventListener("click", () => {
+      overlay.classList.remove("opacity-100");
+      setTimeout(() => overlay.classList.add("hidden"), 300);
+    });
+
+    updateCarousel();
+  </script>
+
+  <!-- Dodatni stilovi -->
+  <style>
+    #fullscreenOverlay {
+      opacity: 0;
+    }
+
+    #fullscreenOverlay.opacity-100 {
+      opacity: 1;
+    }
+
+    img {
+      user-select: none;
+    }
+  </style>
+</section>
+
+
 
   <!-- FULLSCREEN ZOOM -->
   <div id="imageModal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50"
@@ -71,7 +171,7 @@
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
       const fullSrc = img.src.replace('-small', '');
-    modalImg.src = fullSrc;
+      modalImg.src = fullSrc;
       modal.classList.remove('hidden');
     }
     function closeImage() {
@@ -82,7 +182,8 @@
   <!-- BIJELI DIO -->
   <section id="o-meni" class="bg-white text-black py-24 px-6 md:px-12 relative overflow-hidden">
     <!-- Animated line -->
-    <div id="o-meni-line" class="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-1 bg-orange-300/50 invisible"></div>
+    <div id="o-meni-line"
+      class="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-1 bg-orange-300/50 invisible"></div>
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:gap-12 lg:gap-24">
       <!-- Tekst -->
       <div class="md:w-1/2 flex flex-col justify-center text-left mb-10 md:mb-0">
@@ -116,7 +217,7 @@
         <img src="Limun-Limeta Drip2_small.jpg" alt="Foto 4"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
-        <img src="Jagoda-Lubenica Drip_small.jpg" alt="Foto 5"
+        <img src="Jagoda-Lubenica Drip_small.jpg " alt="Foto 5"
           class="w-full h-48 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           onclick="openImage(this)">
         <img src="Rolex1_small.jpg" alt="Foto 6"
@@ -140,16 +241,24 @@
 
         <!-- Linkovi -->
         <div class="flex flex-col sm:flex-row gap-4 mt-2 justify-center">
-          <a href="#o-meni" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">O meni</a>
-          <a href="#projekti" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Projekti</a>
-          <a href="#kontakt" class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Kontakt</a>
+          <a href="#o-meni"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">O
+            meni</a>
+          <a href="#projekti"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Projekti</a>
+          <a href="#kontakt"
+            class="hover:text-gray-300 transition-colors cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95">Kontakt</a>
         </div>
 
         <!-- Društvene mreže -->
         <div class="flex gap-3 mt-2 justify-center">
-          <a href="https://www.instagram.com/_vitodesign_/"><img src="Instagram_logo_2022.svg.webp" alt="igLogo" class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>
-          <a href="https://www.youtube.com/@vitodesign12"><img src="YouTube_full-color_icon_(2017).svg.webp" alt="igLogo" class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>
-          <a href="https://x.com/spicarvito"><img src="x-twitter-logo-on-black-circle-5694247.png" alt="igLogo" class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>   
+          <a href="https://www.instagram.com/_vitodesign_/"><img src="Instagram_logo_2022.svg.webp" alt="igLogo"
+              class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>
+          <a href="https://www.youtube.com/@vitodesign12"><img src="YouTube_full-color_icon_(2017).svg.webp"
+              alt="igLogo"
+              class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>
+          <a href="https://x.com/spicarvito"><img src="x-twitter-logo-on-black-circle-5694247.png" alt="igLogo"
+              class="w-auto h-10 lg:h-12 cursor-pointer hover:scale-105 transition-transform duration-300 active:scale-95"></a>
         </div>
 
         <!-- Copyright -->
@@ -161,35 +270,36 @@
   <!-- Scroll animation JS -->
   <script>
     const oMeniLinks = document.querySelectorAll('a[href="#o-meni"]');
-const oMeniSection = document.getElementById('o-meni');
-const oMeniLine = document.getElementById('o-meni-line');
+    const oMeniSection = document.getElementById('o-meni');
+    const oMeniLine = document.getElementById('o-meni-line');
 
-oMeniLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
+    oMeniLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
 
-    // Smooth scroll
-    oMeniSection.scrollIntoView({ behavior: 'smooth' });
+        // Smooth scroll
+        oMeniSection.scrollIntoView({ behavior: 'smooth' });
 
-    // Reset line
-    oMeniLine.classList.remove('invisible'); 
-    oMeniLine.style.transition = 'none';
-    oMeniLine.style.width = '0';
+        // Reset line
+        oMeniLine.classList.remove('invisible');
+        oMeniLine.style.transition = 'none';
+        oMeniLine.style.width = '0';
 
-    // Animate line 0 → 100%
-    setTimeout(() => {
-      oMeniLine.style.transition = 'width 0.5s ease-in-out';
-      oMeniLine.style.width = '100%';
-    }, 100);
+        // Animate line 0 → 100%
+        setTimeout(() => {
+          oMeniLine.style.transition = 'width 0.5s ease-in-out';
+          oMeniLine.style.width = '100%';
+        }, 100);
 
-    // Animate back 100% → 0
-    setTimeout(() => {
-      oMeniLine.style.transition = 'width 0.5s ease-in-out';
-      oMeniLine.style.width = '0';
-    }, 1000);
-  });
-});
+        // Animate back 100% → 0
+        setTimeout(() => {
+          oMeniLine.style.transition = 'width 0.5s ease-in-out';
+          oMeniLine.style.width = '0';
+        }, 1000);
+      });
+    });
   </script>
 
 </body>
+
 </html>
